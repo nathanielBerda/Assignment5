@@ -5,19 +5,23 @@
     <style>
 body{
 font-family: 'Fresca', sans-serif;
-margin: 0;
+margin-top: 10px;
+background-image: url("http://files.abovetopsecret.com/images/member/9ff8182b9086.gif");
+background-size: contain;
 font-size: 30px;
 }
 
 .support{
     text-align: center;
+    border: 2px white solid;
 }
 
 .raw{
-    background-color: lightblue;
+    background-color: none;
     margin: 0px auto;
     margin-right: 15%;
     margin-left: 15%;
+
 }
 
 .card{
@@ -32,10 +36,11 @@ font-size: 30px;
     border-radius: 10px;
 }
 .card:hover{
-    opacity:0.70;
+    opacity:0.85;
 }
 .wrong1{
     position: absolute;
+    color: white;
     top: 40px;
     left: 20px;  
 }
@@ -43,14 +48,15 @@ font-size: 30px;
     position: absolute;
     top: 70px;
     left: 20px;
+    color: white;
 }
 
 .restart{
     position: absolute;
     top: 40px;
     right: 20px;
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: black;
     width: 100px;
     height: 80px;
     border: none;
@@ -60,7 +66,8 @@ font-size: 30px;
 
 .confirm{
     position:absolute;
-    right: 3px;
+    border: 2px solid white;
+    right: 12px;
     top: 40px;
     background-color:black;
     color: white;
@@ -68,6 +75,7 @@ font-size: 30px;
     height: 100px;
     display: none;
     z-index: 3;
+    font-family: 'Fresca', sans-serif;
 }
 .confbut{
     background-color: white;
@@ -79,6 +87,7 @@ font-size: 30px;
     z-index: 4;
     font-family: 'Fresca', sans-serif;
     font-size: 15px;
+    font-family: 'Fresca', sans-serif;
 }
 .gameWon{
     position: absolute;
@@ -92,6 +101,7 @@ font-size: 30px;
     padding-top: 10px;
     text-align:center;
     display: none;
+    font-family: 'Fresca', sans-serif;
 }
 .victbutton{
     background-color: black;
@@ -110,7 +120,7 @@ font-size: 30px;
 
 <link href="https://fonts.googleapis.com/css?family=Fresca" rel="stylesheet">
     </head> 
-    <body>
+    <body id="bod">
     <div class="wrong1">Wrong attempts:</div>
     <div class="wrong2" id="wrong">0</div>
     <div class='support'>
@@ -221,7 +231,8 @@ function test(){
                 
                 setTimeout(function(){
                 document.getElementById("won").style.display="block";
-                document.getElementById("score").innerHTML="You won, but you made "+wrong+" mistakes, you can do better. Continue?"
+                document.getElementById("score").innerHTML="You won, but you made "+wrong+" mistakes, you can do better. Restart?"
+                document.getElementById("bod").style.backgroundImage="url('http://bestanimations.com/Holidays/Fireworks/fireworks/ba-awesome-colorful-fireworks-animated-gif-image-s.gif')";
                 }
                 , 1000)
                 
@@ -280,6 +291,7 @@ function yes(){
     document.getElementById("confirm").style.display="none";
     document.getElementById("won").style.display="none";
     wrong=0;
+    document.getElementById("bod").style.backgroundImage="url('http://files.abovetopsecret.com/images/member/9ff8182b9086.gif')";
     document.getElementById("wrong").innerHTML=wrong;
     array.shuffle();
     for(i=0;i<12;i++){
