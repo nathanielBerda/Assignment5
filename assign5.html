@@ -32,7 +32,7 @@ font-size: 30px;
     border-radius: 10px;
 }
 .card:hover{
-    opacity:0.8;
+    opacity:0.70;
 }
 .wrong1{
     position: absolute;
@@ -80,7 +80,31 @@ font-size: 30px;
     font-family: 'Fresca', sans-serif;
     font-size: 15px;
 }
-
+.gameWon{
+    position: absolute;
+    width: 400px;
+    height: 300px;
+    background-color: white;
+    color: black;
+    border: 3px solid black;
+    top: 40%;
+    left: 40%;
+    padding-top: 10px;
+    text-align:center;
+    display: none;
+}
+.victbutton{
+    background-color: black;
+    color:white;
+    border: 0px;
+    width: 80px;
+    height: 60px;
+    margin-right: 30px;
+    margin-left: 30px;
+    z-index: 4;
+    font-family: 'Fresca', sans-serif;
+    font-size: 15px;
+}
 
     </style>    
 
@@ -109,14 +133,21 @@ font-size: 30px;
             <div class="card" id='card11' found="no"></div>
         </div>
     </div>
-    <button class="restart" id="restart">Restart</button>
+    <button class="restart" id="restart">Restart</button>00
 
     <div class="confirm" id="confirm">Are you sure?
+        
         <br/>
         <button class="confbut" id='yes'>Yes</button>
         <button class="confbut" id="no">No</button>
     </div>
     
+    <div class="gameWon" id="won">
+        <div id="score"></div><br/><br/>
+        <button class="victbutton" id='yess'>Yes</button>
+        <button class="victbutton" id="noo">No</button>
+    </div>
+
 	<script>
 
 
@@ -157,7 +188,6 @@ pairleft=6; //how many cards left to find
 wrong=0; //how many wrong attempts
 
 function test(){
-    console.log(pairleft);
     if(this.found=="yes"){
         alert("this card has been found");
     }
@@ -171,46 +201,65 @@ function test(){
         j1= array[i1] //to have the new position after the shuffle
         card1.style.backgroundImage='url("./imgs/image'+j1+'.jpg")';
         counter=1;
-        console.log("j1 = "+j1)
         }
         else if(counter==1){
         //there have been an image selected already
         id2=this.id; //will return card4 for instance
-        if(id1==id2){alert("you must chose another card");}
-        else{
-        
-        card2=document.getElementById(id2);
-        var i2 = id2.slice(4); // i=4 in this case
-        j2= array[i2] //to have the new position after the shuffle
-        card2.style.backgroundImage='url("./imgs/image'+j2+'.jpg")';
-        counter=0;
-
-        console.log("j2 = "+j2);
-        var delayMillis = 1000; //1 second
-        setTimeout(function() {
+         if(id1==id2){alert("you must chose another card");}
+            else{
+            card2=document.getElementById(id2);
+            var i2 = id2.slice(4); // i2=4 in this case
+            j2= array[i2] //to have the new position after the shuffle
+            card2.style.backgroundImage='url("./imgs/image'+j2+'.jpg")';
+            counter=0;
             if(Math.abs(j1-j2)==1&&(j2+j1-1)%4==0){
                 //the pair matches
-                var delayMillis = 1000; //1 second
                 pairleft--
                 card1.found="yes";
                 card2.found="yes";
                 if(pairleft==0){
-                    alert("game finished");
+                
+                setTimeout(function(){
+                document.getElementById("won").style.display="block";
+                document.getElementById("score").innerHTML="You won, but you made "+wrong+" mistakes, you can do better. Continue?"
                 }
-                setTimeout(function() {
-            }, delayMillis);}
-            else{
-            card1.style.backgroundImage='url("./imgs/cover.jpg")';
-            card2.style.backgroundImage='url("./imgs/cover.jpg")';
-            wrong=wrong+1;
-            document.getElementById("wrong").innerHTML=wrong;
-
+                , 1000)
+                
+                }
+                else{
+                //the 2 cards are same but the game is not finished
+                }
             }
-        }, delayMillis);   
-         }
-        }
+            else{
+                for(i=0;i<11;i++){
+                k="card"+i;
+                card=document.getElementById(k);
+                card.removeEventListener("click",test);
+                }
+                wrong=wrong+1;
+                document.getElementById("wrong").innerHTML=wrong;
+                    
+                setTimeout(function(){
+                card1.style.backgroundImage='url("./imgs/cover.jpg")';
+                card2.style.backgroundImage='url("./imgs/cover.jpg")'; 
+                    for(i=0;i<11;i++){
+                    k="card"+i;
+                    card=document.getElementById(k);
+                    card.addEventListener("click",test);
+                    }
+                    
+                    }
+                , 1000);
+                
+                    
+                }   
+            }
+            //the 2 cards are differents
+            }
+        //user is taking the second card
     }
 }
+
 
 rest=document.getElementById("restart");
 rest.addEventListener("click",restart);
@@ -220,12 +269,16 @@ function restart(){
 }
 
 document.getElementById("no").addEventListener("click",noo);
+document.getElementById("noo").addEventListener("click",noo)
 function noo(){
     document.getElementById("confirm").style.display="none";
+    document.getElementById("won").style.display="none";
 }
 document.getElementById("yes").addEventListener("click",yes);
+document.getElementById("yess").addEventListener("click",yes);
 function yes(){
     document.getElementById("confirm").style.display="none";
+    document.getElementById("won").style.display="none";
     wrong=0;
     document.getElementById("wrong").innerHTML=wrong;
     array.shuffle();
