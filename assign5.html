@@ -1,0 +1,238 @@
+ <!DOCTYPE html>
+<html>
+    <head>
+    <title>Assignment 5</title>
+    <style>
+body{
+font-family: 'Fresca', sans-serif;
+margin: 0;
+font-size: 30px;
+}
+
+.support{
+    text-align: center;
+}
+
+.raw{
+    background-color: lightblue;
+    margin: 0px auto;
+    margin-right: 15%;
+    margin-left: 15%;
+}
+
+.card{
+    display: inline-block;
+    height: 225px;
+    width: 205px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("./imgs/cover.jpg");
+    box-shadow: 8px 8px 12px #aaa;
+    margin: 10px;
+    border-radius: 10px;
+}
+.card:hover{
+    opacity:0.8;
+}
+.wrong1{
+    position: absolute;
+    top: 40px;
+    left: 20px;  
+}
+.wrong2{
+    position: absolute;
+    top: 70px;
+    left: 20px;
+}
+
+.restart{
+    position: absolute;
+    top: 40px;
+    right: 20px;
+    background-color: black;
+    color: white;
+    width: 100px;
+    height: 80px;
+    border: none;
+}
+
+.confirm{
+    position:absolute;
+    right: 3px;
+    top: 40px;
+    background-color:black;
+    color: white;
+    text-align: center;
+    height: 100px;
+    display: none;
+    z-index: 3;
+}
+.confbut{
+    background-color: white;
+    border: 0px;
+    width: 40px;
+    height: 30px;
+    margin-right: 30px;
+    margin-left: 30px;
+    z-index: 4;
+}
+
+
+    </style>    
+
+<link href="https://fonts.googleapis.com/css?family=Fresca" rel="stylesheet">
+    </head> 
+    <body>
+    <div class="wrong1">Wrong attempts:</div>
+    <div class="wrong2" id="wrong">0</div>
+    <div class='support'>
+        <div class="raw">
+            <div class="card" id='card0' data-value='notfound'></div>
+            <div class="card" id='card1' data-value='notfound'></div>
+            <div class="card" id='card2' data-value='notfound'></div>
+            <div class="card" id='card3' data-value='notfound'></div>
+        </div>
+        <div class="raw">
+            <div class="card" id='card4' data-value='notfound'></div>
+            <div class="card" id='card5' data-value='notfound'></div>
+            <div class="card" id='card6' data-value='notfound'></div>
+            <div class="card" id='card7' data-value='notfound'></div>
+        </div>
+        <div class="raw">
+            <div class="card" id='card8' data-value='notfound'></div>
+            <div class="card" id='card9' data-value='notfound'></div>
+            <div class="card" id='card10' data-value='notfound'></div>
+            <div class="card" id='card11' data-value='notfound'></div>
+        </div>
+    </div>
+    <button class="restart" id="restart">Restart</button>
+
+    <div class="confirm" id="confirm">Are you sure?
+        <br/>
+        <button class="confbut" id='yes'>Yes</button>
+        <button class="confbut" id="no">No</button>
+    </div>
+    
+	<script>
+
+
+array= new Array(12)
+for(i=0;i<12; i++){
+array[i]=i;
+}
+//array will be [0,1,2,3,4,5,6,7,8,9,10,11]
+
+Array.prototype.shuffle = function() {
+  var i = this.length, j, temp;
+  if ( i == 0 ) return this;
+  while ( --i ) {
+     j = Math.floor( Math.random() * ( i + 1 ) );
+     temp = this[i];
+     this[i] = this[j];
+     this[j] = temp;
+  }
+  return this;
+}
+
+array.shuffle();
+//the array is now shuffled, for instance [0,11,8,4,6,2,1,3,10,5,7,9]
+
+//ceci est un test
+for(i=0; i<12; i++){
+    var k="card"+i;
+    card=document.getElementById(k);
+    card.addEventListener("click",test);
+}
+counter=0; //counter will be 0 or 1 to know if it's the first or the second card picked
+id1=20;
+id2=20;
+i1=20;
+i2=20;
+pairleft=6; //how many cards left to find
+wrong=0; //how many wrong attempts
+
+function test(){
+    if(this.getAttribute("data-value")=="found"){
+        alert("this card has been found");
+    }
+    else{
+        if(counter==0){
+        //it is the first card to pick in the pair
+        
+        id1=this.id; //will return card4 for instance
+        card1=document.getElementById(id1);
+        var i1 = id1.slice(4); // i=4 in this case
+        j1= array[i1] //to have the new position after the shuffle
+        card1.style.backgroundImage='url("./imgs/image'+j1+'.jpg")';
+        counter=1;
+        console.log("j1 = "+j1)
+        }
+        else if(counter==1){
+        //there have been an image selected already
+        id2=this.id; //will return card4 for instance
+        if(id1==id2){alert("you must chose another card");}
+        else{
+        
+        card2=document.getElementById(id2);
+        var i2 = id2.slice(4); // i=4 in this case
+        j2= array[i2] //to have the new position after the shuffle
+        card2.style.backgroundImage='url("./imgs/image'+j2+'.jpg")';
+        counter=0;
+
+        console.log("j2 = "+j2);
+        var delayMillis = 1000; //1 second
+        setTimeout(function() {
+            if(Math.abs(j1-j2)==1&&(j2+j1-1)%4==0){
+                //the pair matches
+                var delayMillis = 1000; //1 second
+                pairleft--
+                card1.attribute("data-value")="found";
+                card2.attribute("data-value")="found";
+                if(pairleft==0){
+                    alert("game finished");
+                }
+                setTimeout(function() {
+            }, delayMillis);}
+            else{
+            card1.style.backgroundImage='url("./imgs/cover.jpg")';
+            card2.style.backgroundImage='url("./imgs/cover.jpg")';
+            wrong=wrong+1;
+            document.getElementById("wrong").innerHTML=wrong;
+
+            }
+        }, delayMillis);   
+         }
+        }
+    }
+}
+
+rest=document.getElementById("restart");
+rest.addEventListener("click",restart);
+
+function restart(){
+    document.getElementById("confirm").style.display="block";
+}
+
+document.getElementById("no").addEventListener("click",noo);
+function noo(){
+    document.getElementById("confirm").style.display="none";
+}
+/*document.getElementById("yes").addEventListener("click",yes);
+
+function yes(){
+    document.getElementById("confirm").style.display="none";
+    wrong=0;
+    array.shuffle();
+    for(i=0;i<12<i++){
+       var k="card"+i;
+        card=document.getElementById(k);
+    card.addEventListener("click",test);
+}
+    }
+}*/
+
+    </script>
+        
+    </body>        
+        
+</html>
