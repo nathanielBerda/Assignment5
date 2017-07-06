@@ -198,13 +198,15 @@ pairleft=6; //how many cards left to find
 wrong=0; //how many wrong attempts
 
 function test(){
+    
     if(this.found=="yes"){
         alert("this card has been found");
     }
     else{
         if(counter==0){
         //it is the first card to pick in the pair
-        
+        var sound= new Audio('./sound/sound.wav');
+        sound.play();
         id1=this.id; //will return card4 for instance
         card1=document.getElementById(id1);
         var i1 = id1.slice(4); // i=4 in this case
@@ -230,6 +232,8 @@ function test(){
                 if(pairleft==0){
                 
                 setTimeout(function(){
+                var sound2= new Audio('./sound/win.mp3');
+                sound2.play();
                 document.getElementById("won").style.display="block";
                 document.getElementById("score").innerHTML="You won, but you made "+wrong+" mistakes, you can do better. Restart?"
                 document.getElementById("bod").style.backgroundImage="url('http://bestanimations.com/Holidays/Fireworks/fireworks/ba-awesome-colorful-fireworks-animated-gif-image-s.gif')";
@@ -238,10 +242,14 @@ function test(){
                 
                 }
                 else{
+                var sound3= new Audio('./sound/correct.mp3');
+                sound3.play();
                 //the 2 cards are same but the game is not finished
                 }
             }
             else{
+                 var wrongsound= new Audio('./sound/wrong.mp3');
+                 wrongsound.play();
                 for(i=0;i<11;i++){
                 k="card"+i;
                 card=document.getElementById(k);
@@ -288,6 +296,8 @@ function noo(){
 document.getElementById("yes").addEventListener("click",yes);
 document.getElementById("yess").addEventListener("click",yes);
 function yes(){
+    var rest = new Audio("./sound/restart.mp3");
+    rest.play();
     document.getElementById("confirm").style.display="none";
     document.getElementById("won").style.display="none";
     wrong=0;
