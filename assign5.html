@@ -2,152 +2,7 @@
 <html>
     <head>
     <title>Assignment 5</title>
-    <style>
-body{
-font-family: 'Fresca', sans-serif;
-margin-top: 10px;
-background-image: url("http://files.abovetopsecret.com/images/member/9ff8182b9086.gif");
-background-size: contain;
-font-size: 30px;
-}
-
-.support{
-    text-align: center;
-    border: 2px white solid;
-}
-.level{
-    position: absolute;
-    top: 150px;
-}
-.lu{
-    list-style-type: none;
-}
-.li input[type=radio] {
-  display:none;
-}
-
-.lu .li label{
-  cursor: pointer;
-  -webkit-transition: all 0.25s linear;
-}
-
-.li{
-    color: white;
-}
-.lu input[type=radio]:checked ~ label{
-  color: #0DFF92;
-}
-
-.raw{
-    background-color: none;
-    margin: 0px auto;
-    margin-right: 15%;
-    margin-left: 15%;
-
-}
-
-.card{
-    display: inline-block;
-    height: 225px;
-    width: 205px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-image: url("./imgs/cover.jpg");
-    box-shadow: 8px 8px 12px #aaa;
-    margin: 10px;
-    border-radius: 10px;
-}
-.card:hover{
-    opacity:0.85;
-}
-.wrong1{
-    position: absolute;
-    color: white;
-    top: 40px;
-    left: 20px;  
-}
-.wrong2{
-    position: absolute;
-    top: 70px;
-    left: 20px;
-    color: white;
-}
-
-.restart{
-    position: absolute;
-    top: 40px;
-    right: 20px;
-    background-color: white;
-    color: black;
-    width: 100px;
-    height: 80px;
-    border: none;
-    font-family: 'Fresca', sans-serif;
-    font-size: 20px;
-}
-
-.confirm{
-    position:absolute;
-    border: 2px solid white;
-    right: 12px;
-    top: 40px;
-    background-color:black;
-    color: white;
-    text-align: center;
-    height: 100px;
-    display: none;
-    z-index: 3;
-    font-family: 'Fresca', sans-serif;
-}
-.confbut{
-    background-color: white;
-    border: 0px;
-    width: 40px;
-    height: 30px;
-    margin-right: 30px;
-    margin-left: 30px;
-    z-index: 4;
-    font-family: 'Fresca', sans-serif;
-    font-size: 15px;
-    font-family: 'Fresca', sans-serif;
-}
-.gameWon{
-    position: absolute;
-    width: 400px;
-    height: 300px;
-    background-color: white;
-    color: black;
-    border: 3px solid black;
-    top: 40%;
-    left: 40%;
-    padding-top: 10px;
-    text-align:center;
-    display: none;
-    font-family: 'Fresca', sans-serif;
-}
-.victbutton{
-    background-color: black;
-    color:white;
-    border: 0px;
-    width: 80px;
-    height: 60px;
-    margin-right: 30px;
-    margin-left: 30px;
-    z-index: 4;
-    font-family: 'Fresca', sans-serif;
-    font-size: 15px;
-}
-.changeL{
-    background-color: white;
-    height: 60px;
-    width: 100px;
-    color: black;
-    margin-left: 40px;
-    padding-top:20%;
-    text-align: center;
-}
-
-    </style>    
+    <link rel="stylesheet" type="text/css" href="./css/style.css">    
 
 <link href="https://fonts.googleapis.com/css?family=Fresca" rel="stylesheet">
     </head> 
@@ -172,20 +27,20 @@ font-size: 30px;
             <div class="card" id='card11' found="no"></div>
         </div>
         <div class="raw">
-            <div class="card" id='card12' found="no" show="no"></div>
-            <div class="card" id='card13' found="no" show="no"></div>
-            <div class="card" id='card14' found="no" show="no"></div>
-            <div class="card" id='card15' found="no" show="no"></div>
-            <div class="card" id='card16' found="no" show="no"></div>
-            <div class="card" id='card17' found="no" show="no"></div>
+            <div class="card" id='card12' found="no"></div>
+            <div class="card" id='card13' found="no"></div>
+            <div class="card" id='card14' found="no"></div>
+            <div class="card" id='card15' found="no"></div>
+            <div class="card" id='card16' found="no"></div>
+            <div class="card" id='card17' found="no"></div>
         </div>
         <div class="raw">
-            <div class="card" id='card18' found="no" show="no"></div>
-            <div class="card" id='card19' found="no" show="no"></div>
-            <div class="card" id='card20' found="no" show="no"></div>
-            <div class="card" id='card21' found="no" show="no"></div>
-            <div class="card" id='card22' found="no" show="no"></div>
-            <div class="card" id='card23' found="no" show="no"></div>
+            <div class="card" id='card18' found="no"></div>
+            <div class="card" id='card19' found="no"></div>
+            <div class="card" id='card20' found="no"></div>
+            <div class="card" id='card21' found="no"></div>
+            <div class="card" id='card22' found="no"></div>
+            <div class="card" id='card23' found="no"></div>
         </div>
     </div>
 
@@ -196,6 +51,14 @@ font-size: 30px;
 			<li class="li"><input type="radio" class="ll" name="llevel" id="hard" data-value="24"><label for="hard">Hard</label></li>
 		</ul>
     <div class='changeL' id="changelev">Start</div>
+	</div>
+     <div class="backcard">Themes<br/>
+		<ul class="lu">
+			<li class="li"><input type="radio" class="back" name="back" id="t1" checked><label for="t1">Theme 1</label></li>
+			<li class="li"><input type="radio" class="back" name="back" id="t2"><label for="t2">Theme 2</label></li>
+			<li class="li"><input type="radio" class="back" name="back" id="t3"><label for="t3">Theme 3</label></li>
+		</ul>
+
 	</div>
 
     <button class="restart" id="restart">Restart</button>00
@@ -213,195 +76,7 @@ font-size: 30px;
         <button class="victbutton" id="noo">No</button>
     </div>
 
-	<script>
-
-l=12;
-array= new Array(l);
-for(i=0;i<l; i++){
-array[i]=i;
-}
-//array will be [0,1,2,3,4,5,6,7,8,9,10,11]
-
-for(i=l;i<24;i++){
-    var k="card"+i;
-    card=document.getElementById(k);
-    card.style.display="none";
-}
-
-document.getElementById("changelev").addEventListener('click',levl);
-function levl(){
-    var levels = document.getElementsByClassName("ll");
-	console.log(levels);
-	for(var i=0; i<levels.length; i++){
-		if(levels[i].checked){
-		l=parseInt(levels[i].getAttribute("data-value"));
-		}
-	}
-    console.log(l);
-    yes();
-}
-
-Array.prototype.shuffle = function() {
-  var i = this.length, j, temp;
-  if ( i == 0 ) return this;
-  while ( --i ) {
-     j = Math.floor( Math.random() * ( i + 1 ) );
-     temp = this[i];
-     this[i] = this[j];
-     this[j] = temp;
-  }
-  return this;
-}
-
-array.shuffle();
-//the array is now shuffled, for instance [0,11,8,4,6,2,1,3,10,5,7,9]
-
-
-//set all the cards with the function click (even the hidden ones)
-for(i=0; i<24; i++){
-    var k="card"+i;
-    card=document.getElementById(k);
-    card.addEventListener("click",test);
-}
-counter=0; //counter will be 0 or 1 to know if it's the first or the second card picked
-id1=30;
-id2=30;
-i1=30;
-i2=30;
-var pairleft=l/2; //how many cards left to find
-wrong=0; //how many wrong attempts
-
-function test(){
-    
-    if(this.found=="yes"){
-        alert("this card has been found");
-    }
-    else{
-        if(counter==0){
-        //it is the first card to pick in the pair
-        var sound= new Audio('./sound/sound.wav');
-        sound.play();
-        id1=this.id; //will return card4 for instance
-        card1=document.getElementById(id1);
-        var i1 = id1.slice(4); // i=4 in this case
-        j1= array[i1] //to have the new position after the shuffle
-        card1.style.backgroundImage='url("./imgs/image'+j1+'.jpg")';
-        counter=1;
-        }
-        else if(counter==1){
-        //there have been an image selected already
-        id2=this.id; //will return card4 for instance
-         if(id1==id2){alert("you must chose another card");}
-            else{
-            card2=document.getElementById(id2);
-            var i2 = id2.slice(4); // i2=4 in this case
-            j2= array[i2] //to have the new position after the shuffle
-            card2.style.backgroundImage='url("./imgs/image'+j2+'.jpg")';
-            counter=0;
-            if(Math.abs(j1-j2)==1&&(j2+j1-1)%4==0){
-                //the pair matches
-                pairleft--
-                card1.found="yes";
-                card2.found="yes";
-                if(pairleft==0){
-                
-                setTimeout(function(){
-                var sound2= new Audio('./sound/win.mp3');
-                sound2.play();
-                document.getElementById("won").style.display="block";
-                document.getElementById("score").innerHTML="You won, but you made "+wrong+" mistakes, you can do better. Restart?"
-                document.getElementById("bod").style.backgroundImage="url('http://bestanimations.com/Holidays/Fireworks/fireworks/ba-awesome-colorful-fireworks-animated-gif-image-s.gif')";
-                }
-                , 1000)
-                
-                }
-                else{
-                var sound3= new Audio('./sound/correct.mp3');
-                sound3.play();
-                //the 2 cards are same but the game is not finished
-                }
-            }
-            else{
-                 var wrongsound= new Audio('./sound/wrong.mp3');
-                 wrongsound.play();
-                for(i=0;i<l;i++){
-                k="card"+i;
-                card=document.getElementById(k);
-                card.removeEventListener("click",test);
-                }
-                wrong=wrong+1;
-                document.getElementById("wrong").innerHTML=wrong;
-                    
-                setTimeout(function(){
-                card1.style.backgroundImage='url("./imgs/cover.jpg")';
-                card2.style.backgroundImage='url("./imgs/cover.jpg")'; 
-                    for(i=0;i<l;i++){
-                    k="card"+i;
-                    card=document.getElementById(k);
-                    card.addEventListener("click",test);
-                    }
-                    
-                    }
-                , 1000);
-                
-                    
-                }   
-            }
-            //the 2 cards are differents
-            }
-        //user is taking the second card
-    }
-}
-
-
-rest=document.getElementById("restart");
-rest.addEventListener("click",restart);
-
-function restart(){
-    document.getElementById("confirm").style.display="block";
-}
-
-document.getElementById("no").addEventListener("click",noo);
-document.getElementById("noo").addEventListener("click",noo)
-function noo(){
-    document.getElementById("confirm").style.display="none";
-    document.getElementById("won").style.display="none";
-}
-document.getElementById("yes").addEventListener("click",yes);
-document.getElementById("yess").addEventListener("click",yes);
-function yes(){
-    array= new Array(l);
-    for(i=0;i<l; i++){
-    array[i]=i;
-    }
-    var rest = new Audio("./sound/restart.mp3");
-    rest.play();
-    document.getElementById("confirm").style.display="none";
-    document.getElementById("won").style.display="none";
-    wrong=0;
-    document.getElementById("bod").style.backgroundImage="url('http://files.abovetopsecret.com/images/member/9ff8182b9086.gif')";
-    document.getElementById("wrong").innerHTML=wrong;
-    array.shuffle();
-    for(i=0;i<24;i++){
-       var k="card"+i;
-        card=document.getElementById(k);
-        card.style.display="none";
-    }
-    for(i=0;i<l;i++){
-       var k="card"+i;
-        card=document.getElementById(k);
-         card.style.backgroundImage='url("./imgs/cover.jpg")';
-        card.found="no";
-        card.style.display="inline-block";
-    }
-    counter=0; //counter will be 0 or 1 to know if it's the first or the second card picked
-    id1=30;
-    id2=30;
-    i1=30;
-    i2=30;
-    pairleft=l/2;
-    }
-
+	<script src="./js/javascript.js">
 
 
     </script>
